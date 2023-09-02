@@ -1,5 +1,5 @@
-## | `Shadowsocks (Outline VPN) api wrapper`
-Library for working with ShadowSocks remote servers (Outline VPN API) in Java.
+## | `Outline Server API wrapper`
+Library for working with Outline remote servers in Java.
 * [Usage Example](https://github.com/dynomake/outline-java-wrapper/blob/master/.github/USAGE.md)
 
 ## | `Add to project:`:

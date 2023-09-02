@@ -1,4 +1,4 @@
-## | `Shadowsocks (Outline VPN) api wrapper`
+## | `Outline Server API wrapper`
 *You can found full example-code in:* [LINK](https://github.com/dynomake/outline-java-wrapper/blob/master/src/test/java/me/dynomake/outline)
 
 First initialize the instance of ShadowSocks Wrapper:

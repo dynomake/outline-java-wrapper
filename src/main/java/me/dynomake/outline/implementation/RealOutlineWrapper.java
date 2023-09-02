@@ -1,12 +1,13 @@
-package net.suuft.shadowsocks.implementation;
+package me.dynomake.outline.implementation;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import net.suuft.shadowsocks.ShadowsocksWrapper;
-import net.suuft.shadowsocks.implementation.model.Response;
-import net.suuft.shadowsocks.model.OutlineKey;
-import net.suuft.shadowsocks.model.OutlineKeyList;
-import net.suuft.shadowsocks.model.OutlineServer;
+import me.dynomake.outline.OutlineWrapper;
+import me.dynomake.outline.gson.GsonUtil;
+import me.dynomake.outline.model.OutlineKey;
+import me.dynomake.outline.model.OutlineKeyList;
+import me.dynomake.outline.model.OutlineServer;
+import me.dynomake.outline.implementation.model.Response;
 
 import javax.net.ssl.*;
 import java.io.InputStream;
@@ -18,25 +19,23 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Scanner;
 
-import static net.suuft.shadowsocks.gson.GsonUtil.unparseJson;
-
 /**
- * Shadowsocks Java Wrapper written by suuft developer.
+ * Shadowsocks Java Wrapper written by dynomake developer.
  * Distributed by MIT License.
  */
 @AllArgsConstructor
-public class RealShadowsocksWrapper implements ShadowsocksWrapper {
+public class RealOutlineWrapper implements OutlineWrapper {
 
     private String apiAddress;
 
     @Override
     public OutlineKeyList getKeys() {
-        return unparseJson(getResponse("/access-keys", "GET", null).responseString, OutlineKeyList.class);
+        return GsonUtil.unparseJson(getResponse("/access-keys", "GET", null).responseString, OutlineKeyList.class);
     }
 
     @Override
     public OutlineKey generateKey() {
-        return unparseJson(getResponse("/access-keys", "POST", null).responseString, OutlineKey.class);
+        return GsonUtil.unparseJson(getResponse("/access-keys", "POST", null).responseString, OutlineKey.class);
     }
 
     @Override
@@ -47,7 +46,7 @@ public class RealShadowsocksWrapper implements ShadowsocksWrapper {
 
     @Override
     public OutlineServer getServerInformation() {
-        return unparseJson(getResponse("/server", "GET", null).responseString, OutlineServer.class);
+        return GsonUtil.unparseJson(getResponse("/server", "GET", null).responseString, OutlineServer.class);
     }
 
     private Response getResponse(@NonNull String requestAddress, @NonNull String method, String writableJson) {

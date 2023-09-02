@@ -1,11 +1,11 @@
-package net.suuft.shadowsocks.implementation.model;
+package me.dynomake.outline.implementation.model;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 /**
- * Shadowsocks Java Wrapper written by suuft developer.
+ * Shadowsocks Java Wrapper written by dynomake developer.
  * Distributed by MIT License.
  */
 @AllArgsConstructor

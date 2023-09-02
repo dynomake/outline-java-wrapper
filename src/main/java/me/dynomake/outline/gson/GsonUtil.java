@@ -1,4 +1,4 @@
-package net.suuft.shadowsocks.gson;
+package me.dynomake.outline.gson;
 
 import com.google.gson.Gson;
 import lombok.Getter;

@@ -4,10 +4,10 @@ plugins {
 }
 
 group 'io.github.dynomake'
-version '1.0.0'
+version '1.0.2'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 17
+targetCompatibility = 17
 
 repositories {
     mavenCentral()
@@ -29,8 +29,8 @@ publishing {
             name = "clojars"
             url = uri("https://clojars.org/repo")
             credentials {
-                username = clojarsUserName
-                password = clojarsDeployToken
+                username = "$System.env.deployUser"
+                password = "$System.env.deployToken"
             }
         }
 
@@ -38,6 +38,15 @@ publishing {
     publications {
         gpr(MavenPublication) {
             from(components.java)
+
+            pom {
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/dynomake/outline-java-wrapper/blob/master/LICENSE'
+                    }
+                }
+            }
         }
     }
 }

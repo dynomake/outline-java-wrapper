@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 import java.util.List;
 
 /**
- * Shadowsocks Java Wrapper written by dynomake developer.
+ * Outline Java Wrapper written by dynomake developer.
  * Distributed by MIT License.
  */
 @AllArgsConstructor

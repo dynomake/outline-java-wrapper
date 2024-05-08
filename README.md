@@ -14,7 +14,7 @@ maven {
 ```
 Depend:
 ```groovy
-implementation 'io.github.dynomake:outline-java-wrapper:1.0.0'
+implementation 'io.github.dynomake:outline-java-wrapper:1.0.2'
 ```
 
 ### | `Maven`:
@@ -35,7 +35,7 @@ Depend:
 <dependency>
     <groupId>io.github.dynomake</groupId>
     <artifactId>outline-java-wrapper</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 

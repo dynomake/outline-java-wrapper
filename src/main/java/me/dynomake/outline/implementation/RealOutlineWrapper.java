@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import me.dynomake.outline.OutlineWrapper;
 import me.dynomake.outline.gson.GsonUtil;
+import me.dynomake.outline.implementation.model.Name;
 import me.dynomake.outline.model.OutlineKey;
 import me.dynomake.outline.model.OutlineKeyList;
 import me.dynomake.outline.model.OutlineServer;
@@ -18,9 +19,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 /**
- * Shadowsocks Java Wrapper written by dynomake developer.
+ * Outline Java Wrapper written by dynomake developer.
  * Distributed by MIT License.
  */
 @AllArgsConstructor
@@ -36,6 +38,16 @@ public class RealOutlineWrapper implements OutlineWrapper {
     @Override
     public OutlineKey generateKey() {
         return GsonUtil.unparseJson(getResponse("/access-keys", "POST", null).responseString, OutlineKey.class);
+    }
+
+    @Override
+    public OutlineKey getKey(int keyIdentifier) {
+        return GsonUtil.unparseJson(getResponse("/access-keys/" + keyIdentifier, "GET", null).responseString, OutlineKey.class);
+    }
+
+    @Override
+    public void renameKey(int keyIdentifier, @NonNull String name) {
+        getResponse("/access-keys/" + keyIdentifier +  "/name", "PUT", GsonUtil.parseJson(new Name(name)));
     }
 
     @Override
@@ -57,9 +69,9 @@ public class RealOutlineWrapper implements OutlineWrapper {
 
             httpConn.setRequestMethod(method);
             removeSSLVerifier(httpConn);
-
             if (writableJson != null) {
                 httpConn.setDoOutput(true);
+                httpConn.setRequestProperty("Content-Type", "application/json");
                 OutputStreamWriter writer = new OutputStreamWriter(httpConn.getOutputStream());
                 writer.write(writableJson);
                 writer.flush();
@@ -112,12 +124,7 @@ public class RealOutlineWrapper implements OutlineWrapper {
         }
         connection.setSSLSocketFactory(sc.getSocketFactory());
 
-        HostnameVerifier validHosts = new HostnameVerifier() {
-            @Override
-            public boolean verify(String arg0, SSLSession arg1) {
-                return true;
-            }
-        };
+        HostnameVerifier validHosts = (arg0, arg1) -> true;
 
         connection.setHostnameVerifier(validHosts);
     }

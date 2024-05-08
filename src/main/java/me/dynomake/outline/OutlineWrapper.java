@@ -7,7 +7,7 @@ import me.dynomake.outline.model.OutlineKeyList;
 import me.dynomake.outline.model.OutlineServer;
 
 /**
- * Shadowsocks Java Wrapper written by dynomake developer.
+ * Outline Java Wrapper written by dynomake developer.
  * Distributed by MIT License.
  */
 public interface OutlineWrapper {
@@ -19,9 +19,9 @@ public interface OutlineWrapper {
     OutlineKeyList getKeys();
 
     OutlineKey generateKey();
-
+    OutlineKey getKey(int keyIdentifier);
+    void renameKey(int keyIdentifier, @NonNull String name);
     boolean removeKey(int keyIdentifier);
-
     OutlineServer getServerInformation();
 
 }
